@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const birth_date = document.getElementById('fecha_nac').value;
         const deporte = document.getElementById('deporte').value;
 
-        // 1. Validación de longitud (mínimo 8)
+        
         if (password.length < 8) {
             registerMessage.textContent = 'La contraseña debe tener al menos 8 caracteres.';
             return;
