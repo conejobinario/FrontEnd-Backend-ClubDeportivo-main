@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard Usuario - SportClub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+      #mainNav {
+        transition: all 0.4s ease;
+        background: linear-gradient(90deg, #040b5e 0%, #07149C 100%) !important;
+        border-bottom: 2px solid #F2B705;
+      }
+      
+      #mainNav .nav-link { color: white !important; font-weight: 500; }
+      
+      #mainNav .btn-outline-light {
+        color: white !important;
+        border-color: rgba(255, 255, 255, 0.5) !important;
+      }
+
+      .bg-scrolled {
+        background: rgba(231, 241, 255, 0.95) !important;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid #0d6efd !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+
+      .bg-scrolled .nav-link, .bg-scrolled .btn-outline-light { 
+        color: #040b5e !important; 
+        border-color: #040b5e !important;
+      }
+
+      .bg-dashboard { 
+        background-color: #ebedef !important; 
+        min-height: 100vh; 
+      }
+
+      .card {
+        border: none !important;
+        border-radius: 15px !important;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.05) !important;
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover { transform: translateY(-5px); }
+
+      .card-title {
+        border-left: 5px solid #F2B705;
+        padding-left: 12px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+      }
+
+      .avatar-wrapper {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        border: 4px solid #fff;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      }
+      .avatar-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body class="bg-dashboard"> 
+    
+    <header>
+      <nav id="mainNav" class="navbar navbar-expand-sm sticky-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+            <img src="Imagenes/logo_empresa_letra_v1.png" alt="SportClub" height="45">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Clases</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Reservas</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Mi Progreso</a></li>
+            </ul>
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline-light btn-sm">Editar Perfil</button>
+              <a href="index.html" class="btn btn-light btn-sm text-primary fw-bold">Cerrar Sesión</a>
+            </div>
+          </div>
+        </div>
+      </nav> 
+
+      <div class="container mt-4 mb-3">
+        <h1 class="h2 fw-light">Bienvenido a <span class="fw-bold text-primary">SportClub</span></h1>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="row g-4"> 
+        
+        <section class="col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h2 class="card-title text-primary fw-bold mb-4 h6">Mi Perfil</h2>
+              <div class="row align-items-center mb-4">
+                <div class="col-12 text-center mb-3">
+                  <div class="avatar-wrapper">
+                    <img src="Imagenes/usuario1.jpg" alt="Avatar">
+                  </div>
+                </div>
+                <div class="col-12 text-center">
+                  <div class="mb-2">
+                    <label class="small fw-bold text-muted d-block">Usuario:</label>
+                    <span class="border-bottom d-inline-block pb-1 fw-bold text-primary" id="userName">Cargando...</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4">
+                <h3 class="fw-bold text-primary small h6">Objetivos Personales:</h3>
+                <ul class="list-group list-group-flush small">
+                  <li class="list-group-item bg-transparent px-0 border-0">• Mejorar resistencia cardiovascular</li>
+                  <li class="list-group-item bg-transparent px-0 border-0">• Aumentar masa muscular</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h2 class="card-title text-primary fw-bold mb-4 h6">Mi Progreso</h2>
+              
+              <div class="mb-3">
+                <div class="d-flex justify-content-between mb-1">
+                  <span class="small fw-bold">Cardio Semanal</span>
+                  <span class="small fw-bold">75%</span>
+                </div>
+                <div class="progress" style="height: 10px;">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" style="width: 75%"></div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <div class="d-flex justify-content-between mb-1">
+                  <span class="small fw-bold">Fuerza</span>
+                  <span class="small fw-bold">45%</span>
+                </div>
+                <div class="progress" style="height: 10px;">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 45%"></div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <div class="d-flex justify-content-between mb-1">
+                  <span class="small fw-bold">Resistencia</span>
+                  <span class="small fw-bold">60%</span>
+                </div>
+                <div class="progress" style="height: 10px;">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" style="width: 60%"></div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <div class="d-flex justify-content-between mb-1">
+                  <span class="small fw-bold">Flexibilidad</span>
+                  <span class="small fw-bold">30%</span>
+                </div>
+                <div class="progress" style="height: 10px;">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" style="width: 30%"></div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <div class="d-flex justify-content-between mb-1">
+                  <span class="small fw-bold">Hidratación</span>
+                  <span class="small fw-bold">90%</span>
+                </div>
+                <div class="progress" style="height: 10px;">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width: 90%"></div>
+                </div>
+              </div> 
+
+              <div class="mb-3">
+                <div class="d-flex justify-content-between mb-1">
+                  <span class="small fw-bold">Agilidad</span>
+                  <span class="small fw-bold">45%</span>
+                </div>
+                <div class="progress" style="height: 10px;">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 45%"></div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="col-md-12 col-lg-4">
+          <article class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h2 class="card-title text-primary fw-bold mb-3 h6">Clases Disponibles hoy</h2>
+              <div class="list-group list-group-flush">
+                <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0 px-0">
+                  <span class="small">Spinning a las 08:00 am</span>
+                  <button class="btn btn-sm btn-outline-primary px-3 rounded-pill">Reservar</button>
+                </div>
+                <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0 px-0">
+                  <span class="small">Crossfit a las 10:00 am</span>
+                  <button class="btn btn-sm btn-outline-primary px-3 rounded-pill">Reservar</button>
+                </div>
+                <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0 px-0">
+                  <span class="small">Yoga a las 3:00 pm</span>
+                  <button class="btn btn-sm btn-outline-primary px-3 rounded-pill">Reservar</button>
+                </div>
+                <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0 px-0">
+                  <span class="small">Boxeo a las 5:00 pm</span>
+                  <button class="btn btn-sm btn-outline-primary px-3 rounded-pill">Reservar</button>
+                </div>
+                
+                <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0 px-0">
+                  <span class="small">HIIT a las 7:00 pm</span>
+                  <button class="btn btn-sm btn-outline-primary px-3 rounded-pill">Reservar</button>
+                </div>
+                <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0 px-0">
+                  <span class="small">Natacion a las 8:00 pm</span>
+                  <button class="btn btn-sm btn-outline-primary px-3 rounded-pill">Reservar</button>
+                </div>
+                <div class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0 px-0">
+                  <span class="small">Zumba a las 10:00 pm</span>
+                  <button class="btn btn-sm btn-outline-primary px-3 rounded-pill">Reservar</button>
+                </div>
+                </div>
+            </div>
+          </article>
+        </section>
+      </div> 
+
+      <section class="row mt-4 mb-5">
+        <div class="col-12">
+          <article class="card shadow-sm">
+            <div class="card-body">
+              <h2 class="card-title text-primary fw-bold mb-4 h6">Clases Detalladas</h2>
+              <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                  <thead class="table-light">
+                    <tr>
+                      <th scope="col">Clase</th>
+                      <th scope="col">Día / Hora / Cupos</th>
+                      <th scope="col">Descripción</th>
+                      <th scope="col" class="text-center">Acción</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row" class="fw-bold">Spinning</th>
+                      <td>Lunes / 08:00 / 10</td>
+                      <td>Entrenamiento de ciclismo indoor de alta intensidad.</td>
+                      <td class="text-center"><button class="btn btn-primary btn-sm px-4 rounded-pill">Reservar</button></td>
+                    </tr>
+                    <tr>
+                      <th scope="row" class="fw-bold">CrossFit</th>
+                      <td>Miércoles / 10:00 / 15</td>
+                      <td>Ejercicios funcionales variados para fuerza y resistencia.</td>
+                      <td class="text-center"><button class="btn btn-primary btn-sm px-4 rounded-pill">Reservar</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section> 
+    </main>
+
+    <footer class="py-5 border-top" style="background-color: #ebedef;">
+      <div class="container">
+        <nav>
+          <ul class="nav justify-content-center pb-3 mb-3">
+            <li class="nav-item"><a href="index.html" class="nav-link px-2" style="color: #040b5e; font-weight: 500;">Inicio</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2" style="color: #040b5e; font-weight: 500;">Clases</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2" style="color: #040b5e; font-weight: 500;">Reservas</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2" style="color: #040b5e; font-weight: 500;">Mi Progreso</a></li>
+          </ul>
+        </nav>
+        <p class="text-center border-top pt-3 small" style="color: #040b5e; opacity: 0.7;">
+          &copy; 2026 SportClub, Inc. Todos los derechos reservados.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      window.onscroll = function() {
+        var nav = document.getElementById('mainNav');
+        if (window.pageYOffset > 50) {
+          nav.classList.add("bg-scrolled");
+        } else {
+          nav.classList.remove("bg-scrolled");
+        }
+      };
+    </script> 
+    <script src="dashboard.js"></script>
+  </body>
+</html>

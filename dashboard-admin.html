@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard Admin - SportClub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+      #mainNav {
+        transition: all 0.4s ease;
+        background: linear-gradient(90deg, #8b0008 0%, #cc000c 100%) !important;
+        border-bottom: 2px solid #F2B705;
+      }
+      
+      #mainNav .nav-link { color: white !important; font-weight: 500; }
+      
+      #mainNav .btn-outline-light {
+        color: white !important;
+        border-color: rgba(255, 204, 204, 0.95) !important;
+      }
+
+      .bg-scrolled {
+        background: rgba(255, 245, 245, 0.95) !important;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid #dc3545 !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+
+      .bg-scrolled .nav-link, .bg-scrolled .btn-outline-light { 
+        color: #8b0008 !important; 
+        border-color: #8b0008 !important;
+      }
+
+      .bg-dashboard { 
+        background-color: #ebedef !important; 
+        min-height: 100vh; 
+      }
+
+      .card {
+        border: none !important;
+        border-radius: 15px !important;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.05) !important;
+        transition: transform 0.3s ease;
+      }
+      .card:hover { transform: translateY(-5px); }
+
+      .card-title {
+        border-left: 5px solid #F2B705;
+        padding-left: 12px;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+      }
+
+      .avatar-mini {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid #dee2e6;
+      }
+      .avatar-mini img { width: 100%; height: 100%; object-fit: cover; }
+
+      .table > :not(caption) > * > * {
+        background-color: #fff !important;
+        padding: 12px 8px !important;
+      }
+    </style>
+  </head>
+  <body class="bg-dashboard"> 
+    
+    <header>
+      <nav id="mainNav" class="navbar navbar-expand-sm sticky-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+            <img src="Imagenes/logo_empresa_letra_v1.png" alt="SportClub" height="45">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Usuarios</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Estadísticas</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Configuración</a></li>
+            </ul>
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline-light btn-sm px-3">Editar Perfil</button>
+              <a href="index.html" class="btn btn-light btn-sm text-danger fw-bold px-3">Cerrar Sesión</a>
+            </div>
+          </div>
+        </div>
+      </nav> 
+
+      <div class="container py-4">
+        <h1 class="h3 fw-bold text-dark mb-1">Panel de Administración</h1>
+        <p class="text-muted">Control total del sistema SportClub</p>
+      </div>
+    </header>
+
+    <main class="container pb-5">
+      <div class="row g-4"> 
+        
+        <section class="col-lg-3">
+          <article class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h2 class="card-title text-danger fw-bold mb-4 h5">Búsqueda de clases</h2>
+              
+              <form class="d-flex mb-4">
+                <select class="form-select form-select-sm me-2" aria-label="Seleccionar clase">
+                  <option selected disabled>Elige una clase...</option>
+                  <option value="1">Spinning</option>
+                  <option value="2">CrossFit</option>
+                  <option value="3">Yoga</option>
+                  <option value="4">Boxeo</option>
+                  <option value="5">HIIT</option>
+                  <option value="6">Zumba</option>
+                </select>
+                <button class="btn btn-sm btn-outline-danger" type="button">Buscar</button>
+              </form>
+              <div class="list-group list-group-flush small">
+                <div class="list-group-item d-flex justify-content-between align-items-center px-0 bg-transparent border-bottom">
+                  <span>Maki Zenin</span>
+                  <button class="btn btn-sm btn-outline-danger py-0 px-2">Editar</button>
+                </div>
+                <div class="list-group-item d-flex justify-content-between align-items-center px-0 bg-transparent border-bottom">
+                  <span>Toji Fushigiro</span>
+                  <button class="btn btn-sm btn-outline-danger py-0 px-2">Editar</button>
+                </div>
+                <div class="list-group-item d-flex justify-content-between align-items-center px-0 bg-transparent">
+                  <span>Satoru Gojo</span>
+                  <button class="btn btn-sm btn-outline-danger py-0 px-2">Editar</button>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="col-lg-6">
+          <article class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h2 class="card-title text-danger fw-bold mb-4 h5">Gestión de Usuarios</h2>
+              <div class="table-responsive">
+                <table class="table align-middle small text-center mb-0">
+                  <thead class="table-light text-secondary text-uppercase" style="font-size: 0.75rem;">
+                    <tr>
+                      <th scope="col" class="border-0">Nombre</th>
+                      <th scope="col" class="border-0">Email</th>
+                      <th scope="col" class="border-0">Rol</th>
+                      <th scope="col" class="border-0">Acción</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-bottom">
+                      <td class="text-start ps-3">
+                        <div class="avatar-mini d-inline-block me-2 align-middle">
+                          <img src="Imagenes/usuario1.jpg" alt="Usuario">
+                        </div> 
+                        <span class="fw-bold">Yuji Itadori</span>
+                      </td>
+                      <td class="text-muted">yujidesu@gmail.com</td>
+                      <td><span class="badge rounded-pill bg-primary px-3">Usuario</span></td>
+                      <td><button class="btn btn-outline-danger btn-sm rounded-pill px-3">Editar</button></td>
+                    </tr>
+                    <tr class="border-bottom">
+                      <td class="text-start ps-3">
+                        <div class="avatar-mini d-inline-block me-2 align-middle">
+                          <img src="Imagenes/usuario2.jpg" alt="Usuario">
+                        </div> 
+                        <span class="fw-bold">Nobara Kugisaki</span>
+                      </td>
+                      <td class="text-muted">nobaralinda@gmail.com</td>
+                      <td><span class="badge rounded-pill bg-primary px-3">Usuario</span></td>
+                      <td><button class="btn btn-outline-danger btn-sm rounded-pill px-3">Editar</button></td>
+                    </tr>
+                    <tr>
+                      <td class="text-start ps-3">
+                        <div class="avatar-mini d-inline-block me-2 align-middle">
+                          <img src="Imagenes/coach1.jpg" alt="Coach">
+                        </div> 
+                        <span class="fw-bold">Satoru Gojo</span>
+                      </td>
+                      <td class="text-muted">gojo.sensei@sportclub.com</td>
+                      <td><span class="badge rounded-pill bg-success px-3">Coach</span></td>
+                      <td>
+                        <a href="dashboard-coach.html" class="btn btn-outline-danger btn-sm rounded-pill px-3">Editar</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="col-lg-3">
+          <article class="card shadow-sm mb-4 border-0">
+            <div class="card-body">
+              <h2 class="card-title text-danger fw-bold mb-4 h5">Reportes Generales de Ventas</h2>
+              <div class="d-grid gap-2">
+                <button class="btn btn-outline-dark btn-sm d-flex justify-content-between align-items-center">
+                  <span>Informe Mensual</span> <span class="badge bg-dark">Descargar</span>
+                </button>
+                <button class="btn btn-outline-dark btn-sm d-flex justify-content-between align-items-center">
+                  <span>Abril: 2026</span> <span class="badge bg-dark">Descargar</span>
+                </button>
+              </div>
+            </div>
+          </article>
+          <article class="card shadow-sm border-0">
+            <div class="card-body">
+              <button class="btn btn-danger w-100 py-3 fw-bold rounded-3">
+                CONFIGURAR SISTEMA
+              </button>
+            </div>
+          </article>
+        </section>
+
+      </div> 
+    </main>
+
+    <footer class="py-5 border-top" style="background-color: #ebedef;">
+      <div class="container text-center">
+        <ul class="nav justify-content-center pb-3 mb-3">
+          <li class="nav-item"><a href="index.html" class="nav-link px-2 text-danger fw-bold">Inicio</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-danger fw-bold">Usuarios</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-danger fw-bold">Estadísticas</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-danger fw-bold">Configuración</a></li>
+        </ul>
+        <p class="text-muted small">&copy; 2026 SportClub Admin. Todos los derechos reservados.</p>
+      </div>
+    </footer> 
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      window.onscroll = function() {
+        var nav = document.getElementById('mainNav');
+        if (window.pageYOffset > 50) {
+          nav.classList.add("bg-scrolled");
+        } else {
+          nav.classList.remove("bg-scrolled");
+        }
+      };
+    </script> 
+    <script src="dashboard.js"></script>
+  </body>
+</html>

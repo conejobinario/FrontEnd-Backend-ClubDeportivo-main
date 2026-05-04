@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard Coach - SportClub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+      #mainNav {
+        transition: all 0.4s ease;
+        background: linear-gradient(90deg, #0a5c0a 0%, #1b851b 100%) !important;
+        border-bottom: 2px solid #F2B705;
+      }
+      
+      #mainNav .nav-link {
+        color: white !important;
+        font-weight: 500;
+      }
+      
+      #mainNav .btn-outline-light {
+        color: white !important;
+        border-color: rgba(255, 255, 255, 0.5) !important;
+      }
+
+      .bg-scrolled {
+        background: rgba(232, 245, 233, 0.95) !important;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid #28a745 !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+
+      .bg-scrolled .nav-link, .bg-scrolled .btn-outline-light { 
+        color: #0a5c0a !important; 
+        border-color: #0a5c0a !important;
+      }
+
+      .bg-dashboard { 
+        background-color: #ebedef !important; 
+        min-height: 100vh; 
+      }
+
+      .card {
+        border: none !important;
+        border-radius: 15px !important;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.05) !important;
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .card-title {
+        border-left: 5px solid #F2B705;
+        padding-left: 12px;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+      }
+
+      .avatar-mini {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid #fff;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+      .avatar-mini img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body class="bg-dashboard"> 
+    
+    <nav id="mainNav" class="navbar navbar-expand-sm sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <img src="Imagenes/logo_empresa_letra_v1.png" alt="SportClub" height="45">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Mis Alumnos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Mi Horario</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Reportes</a></li>
+          </ul>
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-light btn-sm">Editar Perfil</button>
+            <a href="index.html" class="btn btn-light btn-sm text-success fw-bold">Cerrar Sesión</a>
+          </div>
+        </div>
+      </div>
+    </nav> 
+
+    <div class="container py-4">
+      <h1 class="h3 fw-bold text-dark mb-1">Panel de Entrenador</h1>
+      <h2 class="fw-light h5">Bienvenido, Coach <span class="fw-bold text-success">[Nombre]</span></h2>
+    </div>
+
+    <main class="container pb-5">
+      <div class="row g-4 justify-content-center"> 
+        
+        <div class="col-md-5 col-lg-4">
+          <div class="card h-100 shadow-sm border-0">
+            <div class="card-body">
+              <h5 class="card-title text-success fw-bold mb-4">Mis Alumnos</h5>
+              
+              <div class="list-group list-group-flush">
+                <div class="list-group-item d-flex align-items-center justify-content-between bg-transparent border-0 px-0 mb-3">
+                  <div class="d-flex align-items-center">
+                    <div class="avatar-mini me-3">
+                      <img src="Imagenes/usuario1.jpg" alt="Alumno">
+                    </div>
+                    <div>
+                      <span class="d-block fw-bold small">Yuji Itadori</span>
+                      <span class="text-muted d-block" style="font-size: 0.75rem;">yujidesu@gmail.com</span>
+                    </div>
+                  </div>
+                  <button class="btn btn-sm btn-outline-success rounded-pill px-2" style="font-size: 0.7rem;">Ver Progreso</button>
+                </div>
+
+                <div class="list-group-item d-flex align-items-center justify-content-between bg-transparent border-0 px-0 mb-3">
+                  <div class="d-flex align-items-center">
+                    <div class="avatar-mini me-3">
+                      <img src="Imagenes/usuario2.jpg" alt="Alumno">
+                    </div>
+                    <div>
+                      <span class="d-block fw-bold small">Nobara Kujisaki</span>
+                      <span class="text-muted d-block" style="font-size: 0.75rem;">nobaralinda@gmail.com</span>
+                    </div>
+                  </div>
+                  <button class="btn btn-sm btn-outline-success rounded-pill px-2" style="font-size: 0.7rem;">Ver Progreso</button>
+                </div>
+
+                <div class="list-group-item d-flex align-items-center justify-content-between bg-transparent border-0 px-0 mb-3">
+                  <div class="d-flex align-items-center">
+                    <div class="avatar-mini me-3">
+                      <img src="Imagenes/usuario3.jpg" alt="Alumno">
+                    </div>
+                    <div>
+                      <span class="d-block fw-bold small">Megumi Fushigiro</span>
+                      <span class="text-muted d-block" style="font-size: 0.75rem;">megumi.f@gmail.com</span>
+                    </div>
+                  </div>
+                  <button class="btn btn-sm btn-outline-success rounded-pill px-2" style="font-size: 0.7rem;">Ver Progreso</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-7 col-lg-8">
+          <div class="card h-100 shadow-sm border-0">
+            <div class="card-body">
+              <h5 class="card-title text-success fw-bold mb-4">Mi Horario</h5>
+              <div class="table-responsive">
+                <table class="table table-bordered align-middle text-center small">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Lunes</th>
+                      <th>Martes</th>
+                      <th>Miércoles</th>
+                      <th>Jueves</th>
+                      <th>Viernes</th>
+                      <th>Acción</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Spinning</strong><br>08:00</td>
+                      <td>Por definir</td>
+                      <td><strong>Artes Marciales</strong><br>10:00</td>
+                      <td>10:00</td>
+                      <td>Boxeo</td>
+                      <td><button class="btn btn-outline-success btn-sm w-100 rounded-pill">Ver Detalle</button></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Hockey</strong><br>13:00</td>
+                      <td>Basquetball 11:00</td>
+                      <td><strong>CrossFit</strong><br>11:00</td>
+                      <td>Por definir </td>
+                      <td>Boxeo</td>
+                      <td><button class="btn btn-outline-success btn-sm w-100 rounded-pill">Ver Detalle</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+    </main>
+
+    <footer class="py-5 border-top" style="background-color: #ebedef;">
+      <div class="container">
+        <ul class="nav justify-content-center pb-3 mb-3">
+          <li class="nav-item"><a href="index.html" class="nav-link px-2" style="color: #0a5c0a; font-weight: 500;">Inicio</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2" style="color: #0a5c0a; font-weight: 500;">Mis Alumnos</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2" style="color: #0a5c0a; font-weight: 500;">Mi Horario</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2" style="color: #0a5c0a; font-weight: 500;">Reportes</a></li>
+        </ul>
+        <p class="text-center border-top pt-3" style="color: #0a5c0a; opacity: 0.7;">
+          &copy; 2026 SportClub, Inc. Todos los derechos reservados.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      window.onscroll = function() {
+        var nav = document.getElementById('mainNav');
+        if (window.pageYOffset > 50) {
+          nav.classList.add("bg-scrolled");
+        } else {
+          nav.classList.remove("bg-scrolled");
+        }
+      };
+    </script>
+    <script src="dashboard.js"></script>
+  </body>
+</html>
