@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const registerMessage = document.getElementById('registerMessage');
 
     registerForm.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Evita que la página se recargue
+        e.preventDefault(); 
         
         // Limpiar mensajes previos
         registerMessage.textContent = '';
@@ -17,13 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const birth_date = document.getElementById('fecha_nac').value;
         const deporte = document.getElementById('deporte').value;
 
-        
+        // 1. Validación de longitud
         if (password.length < 8) {
             registerMessage.textContent = 'La contraseña debe tener al menos 8 caracteres.';
             return;
         }
 
-        // 2. Validación alfanumérica (letras y números)
+        // 2. Validación alfanumérica
         const hasLetter = /[a-zA-Z]/.test(password);
         const hasNumber = /[0-9]/.test(password);
         if (!hasLetter || !hasNumber) {
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            // 4. Llamada a la API
+            // 4. Llamada a la API con la estructura de carga (payload) correcta
             const response = await fetch('http://localhost:3000/api/auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -46,11 +46,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     full_name,
                     email,
                     password,
-                    role: 'user', // Siempre 'user' para el formulario de registro
-                    birth_date,
+                    role: 'user',
+                    must_change_password: false, // Campo obligatorio para la API
+                    birth_date: birth_date || "2000-01-01", // Evita fechas vacías o inválidas
                     metadata: {
                         sports: [
-                            { name: deporte, frequency_per_week: 3 }
+                            { 
+                                name: deporte || "ninguno", 
+                                frequency_per_week: 3 
+                            }
                         ]
                     }
                 })
@@ -59,14 +63,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
 
             if (response.ok) {
-                // Éxito: Mostrar mensaje verde y redirigir
                 registerMessage.className = 'mt-3 text-center text-success';
                 registerMessage.textContent = '¡Registro exitoso! Redirigiendo al login...';
                 setTimeout(() => {
                     window.location.href = 'index.html';
                 }, 2000);
             } else {
-                // Error del servidor: Mostrar mensaje en el DOM
+                // Muestra el mensaje específico de la API (ej: "Payload inválido")[cite: 1]
                 registerMessage.textContent = data.message || 'Error en el registro de usuario.';
             }
         } catch (error) {
