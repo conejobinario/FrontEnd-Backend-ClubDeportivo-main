@@ -7,7 +7,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     const passwordInput = document.getElementById('password').value;
     const errorMessage = document.getElementById('error-message');
 
-    // 2. Bloque try/catch para manejo de errores (Petición obligatoria del profe)
+  
     try {
         // Hacemos la petición al backend[cite: 1, 2]
         const respuesta = await fetch('http://localhost:3000/api/auth/login', {
