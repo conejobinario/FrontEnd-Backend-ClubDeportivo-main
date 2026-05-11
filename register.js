@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 4. Validar que el nombre no tenga letras repetidas excesivamente (ej: "aaaaaa")
         if (tieneRepeticionExcesiva(full_name)) {
-            registerMessage.textContent = 'El nombre ingresado no parece válido.';
+            registerMessage.textContent = 'El nombre ingresado no es válido.';
             return;
         }
 
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 6. Validar que el correo no tenga letras repetidas excesivamente (ej: "jaaaaaaa@jaaaa.cl")
         if (tieneRepeticionExcesiva(email)) {
-            registerMessage.textContent = 'El correo ingresado no parece válido.';
+            registerMessage.textContent = 'El correo ingresado no es válido.';
             return;
         }
 
