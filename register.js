@@ -2,6 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.getElementById('registerForm');
     const registerMessage = document.getElementById('registerMessage');
 
+    // Detecta si hay una letra repetida más de 4 veces seguidas (ej: "aaaaa", "jjjjj")
+    function tieneRepeticionExcesiva(texto) {
+        return /(.)\1{4,}/.test(texto);
+    }
+
     registerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -36,7 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // 4. Validar que el email no esté vacío y tenga formato válido
+        // 4. Validar que el nombre no tenga letras repetidas excesivamente (ej: "aaaaaa")
+        if (tieneRepeticionExcesiva(full_name)) {
+            registerMessage.textContent = 'El nombre ingresado no parece válido.';
+            return;
+        }
+
+        // 5. Validar que el email no esté vacío y tenga formato válido
         if (email === '') {
             registerMessage.textContent = 'El correo electrónico es obligatorio.';
             return;
@@ -53,7 +64,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // 5. Validar fecha de nacimiento
+        // 6. Validar que el correo no tenga letras repetidas excesivamente (ej: "jaaaaaaa@jaaaa.cl")
+        if (tieneRepeticionExcesiva(email)) {
+            registerMessage.textContent = 'El correo ingresado no parece válido.';
+            return;
+        }
+
+        // 7. Validar fecha de nacimiento
         if (birth_date === '') {
             registerMessage.textContent = 'La fecha de nacimiento es obligatoria.';
             return;
@@ -83,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // 6. Validar contraseña: mínimo 8, máximo 100 caracteres
+        // 8. Validar contraseña: mínimo 8, máximo 100 caracteres
         if (password.length < 8) {
             registerMessage.textContent = 'La contraseña debe tener al menos 8 caracteres.';
             return;
@@ -94,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // 7. Validar que la contraseña sea alfanumérica (letras y números)
+        // 9. Validar que la contraseña sea alfanumérica (letras y números)
         const tieneLetra = /[a-zA-Z]/.test(password);
         const tieneNumero = /[0-9]/.test(password);
         if (!tieneLetra || !tieneNumero) {
@@ -102,13 +119,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // 8. Validar que las contraseñas coincidan
+        // 10. Validar que las contraseñas coincidan
         if (password !== confirmPassword) {
             registerMessage.textContent = 'Las contraseñas no coinciden.';
             return;
         }
 
-        // 9. Validar deporte
+        // 11. Validar deporte
         if (deporte === '') {
             registerMessage.textContent = 'El deporte de interés es obligatorio.';
             return;
@@ -119,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // 10. Enviar a la API
+        // 12. Enviar a la API
         try {
             const response = await fetch('http://localhost:3000/api/auth/register', {
                 method: 'POST',
