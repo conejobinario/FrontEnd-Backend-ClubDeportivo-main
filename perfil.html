@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mi Perfil - SportClub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+      #mainNav {
+        transition: all 0.4s ease;
+        background: linear-gradient(90deg, #2E1A47 0%, #4a2d70 100%) !important;
+        border-bottom: 2px solid #F2B705;
+      }
+      #mainNav .nav-link { color: white !important; font-weight: 500; }
+      #mainNav .btn-outline-light {
+        color: white !important;
+        border-color: rgba(255,255,255,0.5) !important;
+      }
+      .bg-scrolled {
+        background: rgba(240, 235, 250, 0.95) !important;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid #4a2d70 !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+      .bg-scrolled .nav-link, .bg-scrolled .btn-outline-light { 
+        color: #2E1A47 !important; 
+        border-color: #2E1A47 !important;
+      }
+      .bg-dashboard { 
+        background-color: #ebedef !important; 
+        min-height: 100vh; 
+      }
+      .card {
+        border: none !important;
+        border-radius: 15px !important;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.05) !important;
+      }
+      .card-title {
+        border-left: 5px solid #F2B705;
+        padding-left: 12px;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+      }
+      .avatar-wrapper {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid #F2B705;
+        margin: 0 auto;
+      }
+      .avatar-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      /* Errores en formulario */
+      .input-error { border-color: #dc3545 !important; }
+      .error-msg { color: #dc3545; font-size: 0.8rem; margin-top: 3px; }
+    </style>
+  </head>
+  <body class="bg-dashboard">
+
+    <!-- NAVBAR -->
+    <nav id="mainNav" class="navbar navbar-expand-sm sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <img src="Imagenes/logo_empresa_letra_v1.png" alt="SportClub" height="45">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" id="linkDashboard" href="#">Volver al Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link fw-bold text-warning" href="#">Perfil</a></li>
+          </ul>
+          <div class="d-flex gap-2">
+            <a href="#" id="btnCerrarSesion" class="btn btn-light btn-sm fw-bold px-3" style="color: #2E1A47;">Cerrar Sesión</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ENCABEZADO -->
+    <div class="container py-4">
+      <h1 class="h3 fw-bold text-dark mb-1">&#128100; Mi Perfil</h1>
+      <p class="text-muted">Gestiona tu información personal y preferencias de cuenta</p>
+    </div>
+
+    <!-- ALERTA GLOBAL -->
+    <div class="container">
+      <div id="alertaGlobal" class="alert d-none" role="alert"></div>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container pb-5">
+      <div class="row g-4">
+
+        <!-- ========== COLUMNA IZQUIERDA: Info resumida ========== -->
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm text-center p-4">
+
+            <!-- Foto de perfil placeholder -->
+            <div class="avatar-wrapper mb-3">
+              <img src="Imagenes/usuario1.jpg" alt="Foto de perfil" 
+                   onerror="this.src='https://ui-avatars.com/api/?name=Usuario&background=2E1A47&color=fff&size=120'">
+            </div>
+
+            <!-- Nombre del usuario -->
+            <h4 class="fw-bold mb-1" id="info_nombre">Cargando...</h4>
+            <p class="text-muted small mb-2" id="info_email">...</p>
+
+            <!-- Badge de rol -->
+            <div class="mb-3" id="info_rol_badge"></div>
+
+            <hr>
+
+            <!-- Datos adicionales -->
+            <div class="text-start small">
+              <p class="mb-2">
+                <span class="fw-bold">&#128197; Fecha de nacimiento:</span><br>
+                <span id="info_fecha" class="text-muted">-</span>
+              </p>
+              <p class="mb-2">
+                <span class="fw-bold">&#128274; Rol:</span><br>
+                <span id="info_rol_texto" class="text-muted">-</span>
+              </p>
+              <p class="mb-0">
+                <span class="fw-bold">&#128197; Fecha de registro:</span><br>
+                <span id="info_registro" class="text-muted">-</span>
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ========== COLUMNA DERECHA: Formularios ========== -->
+        <div class="col-md-8">
+
+          <!-- SECCIÓN 1: DATOS PERSONALES -->
+          <div class="card shadow-sm mb-4">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="card-title text-dark fw-bold mb-0">Información Personal</h5>
+                <button class="btn btn-warning btn-sm fw-bold px-3" id="btnEditarPerfil" onclick="toggleEdicion()">
+                  &#9998; Editar Perfil
+                </button>
+              </div>
+
+              <!-- Nombre -->
+              <div class="mb-3">
+                <label class="form-label fw-bold">Nombre Completo</label>
+                <input type="text" id="form_nombre" class="form-control" disabled>
+                <div class="error-msg" id="err_nombre"></div>
+              </div>
+
+              <!-- Email (no editable según PDF) -->
+              <div class="mb-3">
+                <label class="form-label fw-bold">Email <span class="text-muted small">(no editable)</span></label>
+                <input type="email" id="form_email" class="form-control bg-light" disabled>
+              </div>
+
+              <!-- Fecha de nacimiento -->
+              <div class="mb-3">
+                <label class="form-label fw-bold">Fecha de Nacimiento</label>
+                <input type="date" id="form_fecha" class="form-control" disabled>
+                <div class="error-msg" id="err_fecha"></div>
+              </div>
+
+              <!-- Deporte favorito (metadata) -->
+              <div class="mb-3">
+                <label class="form-label fw-bold">Deporte Favorito <span class="text-muted small">(otros / metadata)</span></label>
+                <input type="text" id="form_deporte" class="form-control" disabled placeholder="Ej: Fútbol, Natación...">
+              </div>
+
+              <!-- Botones guardar/cancelar (ocultos hasta que se active la edición) -->
+              <div id="botonesGuardar" class="d-none">
+                <button class="btn btn-secondary me-2" onclick="cancelarEdicion()">Cancelar</button>
+                <button class="btn btn-success fw-bold" onclick="guardarPerfil()">&#10003; Guardar Cambios</button>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- SECCIÓN 2: CAMBIAR CONTRASEÑA -->
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-dark fw-bold mb-4">&#128274; Cambiar Contraseña</h5>
+
+              <!-- Contraseña actual -->
+              <div class="mb-3">
+                <label class="form-label fw-bold">Contraseña Actual</label>
+                <input type="password" id="pass_actual" class="form-control" placeholder="Ingresa tu contraseña actual">
+                <div class="error-msg" id="err_pass_actual"></div>
+              </div>
+
+              <!-- Nueva contraseña -->
+              <div class="mb-3">
+                <label class="form-label fw-bold">Nueva Contraseña</label>
+                <input type="password" id="pass_nueva" class="form-control" placeholder="Mínimo 8 caracteres">
+                <div class="error-msg" id="err_pass_nueva"></div>
+              </div>
+
+              <!-- Confirmar nueva contraseña -->
+              <div class="mb-3">
+                <label class="form-label fw-bold">Confirmar Nueva Contraseña</label>
+                <input type="password" id="pass_confirmar" class="form-control" placeholder="Repite la nueva contraseña">
+                <div class="error-msg" id="err_pass_confirmar"></div>
+              </div>
+
+              <div class="alert alert-info small py-2">
+                &#128161; La contraseña debe tener al menos 8 caracteres e incluir números y letras.
+              </div>
+
+              <button class="btn btn-success fw-bold px-4" onclick="cambiarPassword()">
+                &#128274; Actualizar Contraseña
+              </button>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-4 border-top" style="background-color: #ebedef;">
+      <div class="container text-center">
+        <p class="text-muted small mb-0">&copy; 2026 SportClub, Inc. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // ==========================================
+      // VARIABLES GLOBALES
+      // ==========================================
+      const API = "http://localhost:3000";
+      const token = localStorage.getItem("token");
+      const loggedUser = JSON.parse(localStorage.getItem("user"));
+
+      // Si no hay sesión, mandamos al login
+      if (!token || !loggedUser) {
+        window.location.href = "index.html";
+      }
+
+      // Configuramos el link "Volver al dashboard" según el rol
+      const rol = loggedUser ? loggedUser.role : "user";
+      if (rol === "admin") {
+        document.getElementById("linkDashboard").href = "dashboard-admin.html";
+      } else if (rol === "coach") {
+        document.getElementById("linkDashboard").href = "dashboard-coach.html";
+      } else {
+        document.getElementById("linkDashboard").href = "dashboard-usuario.html";
+      }
+
+      // ==========================================
+      // CERRAR SESIÓN
+      // ==========================================
+      document.getElementById("btnCerrarSesion").addEventListener("click", function(e) {
+        e.preventDefault();
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        window.location.href = "index.html";
+      });
+
+      // ==========================================
+      // NAVBAR SCROLL
+      // ==========================================
+      window.onscroll = function() {
+        var nav = document.getElementById('mainNav');
+        if (window.pageYOffset > 50) {
+          nav.classList.add("bg-scrolled");
+        } else {
+          nav.classList.remove("bg-scrolled");
+        }
+      };
+
+      // ==========================================
+      // FUNCIÓN: Mostrar alerta global
+      // ==========================================
+      function mostrarAlerta(mensaje, tipo) {
+        const alerta = document.getElementById("alertaGlobal");
+        alerta.textContent = mensaje;
+        alerta.className = "alert alert-" + tipo;
+        setTimeout(() => {
+          alerta.className = "alert d-none";
+        }, 4000);
+      }
+
+      // ==========================================
+      // FUNCIÓN: Formatear fecha dd/mm/yyyy
+      // ==========================================
+      function formatearFecha(fechaISO) {
+        if (!fechaISO) return "Sin fecha";
+        const fecha = new Date(fechaISO);
+        const dia = String(fecha.getDate()).padStart(2, "0");
+        const mes = String(fecha.getMonth() + 1).padStart(2, "0");
+        const anio = fecha.getFullYear();
+        return dia + "/" + mes + "/" + anio;
+      }
+
+      // ==========================================
+      // FUNCIÓN: Badge del rol con color
+      // ==========================================
+      function badgeRol(rol) {
+        if (rol === "admin") return '<span class="badge bg-danger px-3 py-2">' + rol + '</span>';
+        if (rol === "coach") return '<span class="badge bg-primary px-3 py-2">' + rol + '</span>';
+        return '<span class="badge bg-success px-3 py-2">' + rol + '</span>';
+      }
+
+      // ==========================================
+      // FUNCIÓN: Cargar perfil desde la API
+      // ==========================================
+      async function cargarPerfil() {
+        try {
+          const respuesta = await fetch(API + "/api/auth/me", {
+            headers: {
+              "Authorization": "Bearer " + token
+            }
+          });
+
+          const resultado = await respuesta.json();
+
+          if (resultado.ok) {
+            const usuario = resultado.data;
+
+            // Llenamos la columna de info resumida
+            document.getElementById("info_nombre").textContent = usuario.full_name || "Sin nombre";
+            document.getElementById("info_email").textContent = usuario.email || "";
+            document.getElementById("info_rol_badge").innerHTML = badgeRol(usuario.role);
+            document.getElementById("info_rol_texto").textContent = usuario.role;
+            document.getElementById("info_fecha").textContent = formatearFecha(usuario.birth_date);
+            document.getElementById("info_registro").textContent = formatearFecha(usuario.createdAt);
+
+            // Llenamos el formulario de edición
+            document.getElementById("form_nombre").value = usuario.full_name || "";
+            document.getElementById("form_email").value = usuario.email || "";
+
+            // Convertimos fecha ISO a formato YYYY-MM-DD para el input type="date"
+            if (usuario.birth_date) {
+              document.getElementById("form_fecha").value = usuario.birth_date.split("T")[0];
+            }
+
+            // Deporte desde metadata
+            if (usuario.metadata && usuario.metadata.sports && usuario.metadata.sports.length > 0) {
+              document.getElementById("form_deporte").value = usuario.metadata.sports[0].name || "";
+            }
+
+          } else {
+            mostrarAlerta("No se pudo cargar el perfil.", "danger");
+          }
+
+        } catch (error) {
+          console.error("Error:", error);
+          mostrarAlerta("No se pudo conectar con el servidor.", "danger");
+        }
+      }
+
+      // Cargamos el perfil al entrar
+      cargarPerfil();
+
+      // ==========================================
+      // EDICIÓN DE PERFIL: activar / desactivar
+      // ==========================================
+      function toggleEdicion() {
+        // Habilitamos los campos editables (no el email)
+        document.getElementById("form_nombre").disabled = false;
+        document.getElementById("form_fecha").disabled = false;
+        document.getElementById("form_deporte").disabled = false;
+        // Mostramos botones guardar/cancelar
+        document.getElementById("botonesGuardar").classList.remove("d-none");
+        // Cambiamos texto del botón
+        document.getElementById("btnEditarPerfil").classList.add("d-none");
+      }
+
+      function cancelarEdicion() {
+        // Deshabilitamos campos
+        document.getElementById("form_nombre").disabled = true;
+        document.getElementById("form_fecha").disabled = true;
+        document.getElementById("form_deporte").disabled = true;
+        // Ocultamos botones
+        document.getElementById("botonesGuardar").classList.add("d-none");
+        // Volvemos a mostrar el botón editar
+        document.getElementById("btnEditarPerfil").classList.remove("d-none");
+        // Limpiamos errores
+        limpiarErrores(["form_nombre", "form_fecha"]);
+        // Recargamos datos originales
+        cargarPerfil();
+      }
+
+      // ==========================================
+      // FUNCIÓN: Guardar cambios del perfil
+      // ==========================================
+      async function guardarPerfil() {
+        const nombre = document.getElementById("form_nombre").value.trim();
+        const fecha = document.getElementById("form_fecha").value;
+        const deporte = document.getElementById("form_deporte").value.trim();
+
+        limpiarErrores(["form_nombre", "form_fecha"]);
+
+        let hayError = false;
+
+        if (!nombre) {
+          mostrarError("form_nombre", "El nombre es obligatorio.");
+          hayError = true;
+        }
+
+        if (hayError) return;
+
+        try {
+          const respuesta = await fetch(API + "/api/auth/me", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer " + token
+            },
+            body: JSON.stringify({
+              full_name: nombre,
+              birth_date: fecha || "2000-01-01",
+              metadata: {
+                sports: [{ name: deporte || "ninguno", frequency_per_week: 3 }]
+              }
+            })
+          });
+
+          const resultado = await respuesta.json();
+
+          if (resultado.ok) {
+            mostrarAlerta("✅ Perfil actualizado correctamente.", "success");
+            cancelarEdicion(); // Volvemos a modo lectura
+            cargarPerfil();    // Recargamos los datos
+          } else {
+            mostrarAlerta("❌ Error: " + (resultado.message || "No se pudo actualizar el perfil."), "danger");
+          }
+
+        } catch (error) {
+          console.error("Error:", error);
+          mostrarAlerta("❌ No se pudo conectar con el servidor.", "danger");
+        }
+      }
+
+      // ==========================================
+      // FUNCIÓN: Cambiar contraseña
+      // ==========================================
+      async function cambiarPassword() {
+        const actual = document.getElementById("pass_actual").value;
+        const nueva = document.getElementById("pass_nueva").value;
+        const confirmar = document.getElementById("pass_confirmar").value;
+
+        limpiarErrores(["pass_actual", "pass_nueva", "pass_confirmar"]);
+
+        let hayError = false;
+
+        if (!actual) {
+          mostrarError("pass_actual", "Ingresa tu contraseña actual.");
+          hayError = true;
+        }
+        if (nueva.length < 8) {
+          mostrarError("pass_nueva", "La contraseña debe tener mínimo 8 caracteres.");
+          hayError = true;
+        }
+        if (nueva !== confirmar) {
+          mostrarError("pass_confirmar", "Las contraseñas no coinciden.");
+          hayError = true;
+        }
+
+        if (hayError) return;
+
+        try {
+          const respuesta = await fetch(API + "/api/auth/me/password", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer " + token
+            },
+            body: JSON.stringify({
+              current_password: actual,
+              new_password: nueva,
+              confirm_password: confirmar
+            })
+          });
+
+          const resultado = await respuesta.json();
+
+          if (resultado.ok) {
+            mostrarAlerta("✅ Contraseña actualizada correctamente.", "success");
+            // Limpiamos los campos
+            document.getElementById("pass_actual").value = "";
+            document.getElementById("pass_nueva").value = "";
+            document.getElementById("pass_confirmar").value = "";
+          } else {
+            mostrarAlerta("❌ Error: " + (resultado.message || "No se pudo cambiar la contraseña."), "danger");
+          }
+
+        } catch (error) {
+          console.error("Error:", error);
+          mostrarAlerta("❌ No se pudo conectar con el servidor.", "danger");
+        }
+      }
+
+      // ==========================================
+      // HELPERS: mostrar / limpiar errores
+      // ==========================================
+      function mostrarError(campoId, mensaje) {
+        const input = document.getElementById(campoId);
+        if (input) input.classList.add("input-error");
+        const err = document.getElementById("err_" + campoId);
+        if (err) err.textContent = mensaje;
+      }
+
+      function limpiarErrores(campos) {
+        campos.forEach(function(id) {
+          const input = document.getElementById(id);
+          if (input) input.classList.remove("input-error");
+          const err = document.getElementById("err_" + id);
+          if (err) err.textContent = "";
+        });
+      }
+
+    </script>
+  </body>
+</html>

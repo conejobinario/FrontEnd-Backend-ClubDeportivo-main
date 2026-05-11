@@ -12,52 +12,38 @@
         background: linear-gradient(90deg, #0a5c0a 0%, #1b851b 100%) !important;
         border-bottom: 2px solid #F2B705;
       }
-      
-      #mainNav .nav-link {
-        color: white !important;
-        font-weight: 500;
-      }
-      
+      #mainNav .nav-link { color: white !important; font-weight: 500; }
       #mainNav .btn-outline-light {
         color: white !important;
         border-color: rgba(255, 255, 255, 0.5) !important;
       }
-
       .bg-scrolled {
         background: rgba(232, 245, 233, 0.95) !important;
         backdrop-filter: blur(10px);
         border-bottom: 1px solid #28a745 !important;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       }
-
       .bg-scrolled .nav-link, .bg-scrolled .btn-outline-light { 
         color: #0a5c0a !important; 
         border-color: #0a5c0a !important;
       }
-
       .bg-dashboard { 
         background-color: #ebedef !important; 
         min-height: 100vh; 
       }
-
       .card {
         border: none !important;
         border-radius: 15px !important;
         box-shadow: 0 8px 30px rgba(0,0,0,0.05) !important;
         transition: transform 0.3s ease;
       }
-
-      .card:hover {
-        transform: translateY(-5px);
-      }
-
+      .card:hover { transform: translateY(-5px); }
       .card-title {
         border-left: 5px solid #F2B705;
         padding-left: 12px;
         text-transform: uppercase;
         font-size: 0.9rem;
       }
-
       .avatar-mini {
         width: 45px;
         height: 45px;
@@ -66,11 +52,7 @@
         border: 2px solid #fff;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       }
-      .avatar-mini img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+      .avatar-mini img { width: 100%; height: 100%; object-fit: cover; }
     </style>
   </head>
   <body class="bg-dashboard"> 
@@ -89,10 +71,11 @@
             <li class="nav-item"><a class="nav-link" href="#">Mis Alumnos</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Mi Horario</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Reportes</a></li>
+            <li class="nav-item"><a class="nav-link" href="perfil.html">Perfil</a></li>
           </ul>
           <div class="d-flex gap-2">
-            <button class="btn btn-outline-light btn-sm">Editar Perfil</button>
-            <a href="index.html" class="btn btn-light btn-sm text-success fw-bold">Cerrar Sesión</a>
+            <a href="perfil.html" class="btn btn-outline-light btn-sm">Editar Perfil</a>
+            <a href="#" id="btnCerrarSesion" class="btn btn-light btn-sm text-success fw-bold">Cerrar Sesión</a>
           </div>
         </div>
       </div>
@@ -100,7 +83,7 @@
 
     <div class="container py-4">
       <h1 class="h3 fw-bold text-dark mb-1">Panel de Entrenador</h1>
-      <h2 class="fw-light h5">Bienvenido, Coach <span class="fw-bold text-success">[Nombre]</span></h2>
+      <h2 class="fw-light h5">Bienvenido, Coach <span class="fw-bold text-success" id="coachName">...</span></h2>
     </div>
 
     <main class="container pb-5">
@@ -115,7 +98,8 @@
                 <div class="list-group-item d-flex align-items-center justify-content-between bg-transparent border-0 px-0 mb-3">
                   <div class="d-flex align-items-center">
                     <div class="avatar-mini me-3">
-                      <img src="Imagenes/usuario1.jpg" alt="Alumno">
+                      <img src="Imagenes/usuario1.jpg" alt="Alumno"
+                           onerror="this.src='https://ui-avatars.com/api/?name=YI&background=1b851b&color=fff&size=45'">
                     </div>
                     <div>
                       <span class="d-block fw-bold small">Yuji Itadori</span>
@@ -128,7 +112,8 @@
                 <div class="list-group-item d-flex align-items-center justify-content-between bg-transparent border-0 px-0 mb-3">
                   <div class="d-flex align-items-center">
                     <div class="avatar-mini me-3">
-                      <img src="Imagenes/usuario2.jpg" alt="Alumno">
+                      <img src="Imagenes/usuario2.jpg" alt="Alumno"
+                           onerror="this.src='https://ui-avatars.com/api/?name=NK&background=1b851b&color=fff&size=45'">
                     </div>
                     <div>
                       <span class="d-block fw-bold small">Nobara Kujisaki</span>
@@ -141,7 +126,8 @@
                 <div class="list-group-item d-flex align-items-center justify-content-between bg-transparent border-0 px-0 mb-3">
                   <div class="d-flex align-items-center">
                     <div class="avatar-mini me-3">
-                      <img src="Imagenes/usuario3.jpg" alt="Alumno">
+                      <img src="Imagenes/usuario3.jpg" alt="Alumno"
+                           onerror="this.src='https://ui-avatars.com/api/?name=MF&background=1b851b&color=fff&size=45'">
                     </div>
                     <div>
                       <span class="d-block fw-bold small">Megumi Fushigiro</span>
@@ -185,7 +171,7 @@
                       <td><strong>Hockey</strong><br>13:00</td>
                       <td>Basquetball 11:00</td>
                       <td><strong>CrossFit</strong><br>11:00</td>
-                      <td>Por definir </td>
+                      <td>Por definir</td>
                       <td>Boxeo</td>
                       <td><button class="btn btn-outline-success btn-sm w-100 rounded-pill">Ver Detalle</button></td>
                     </tr>
@@ -204,7 +190,7 @@
           <li class="nav-item"><a href="index.html" class="nav-link px-2" style="color: #0a5c0a; font-weight: 500;">Inicio</a></li>
           <li class="nav-item"><a href="#" class="nav-link px-2" style="color: #0a5c0a; font-weight: 500;">Mis Alumnos</a></li>
           <li class="nav-item"><a href="#" class="nav-link px-2" style="color: #0a5c0a; font-weight: 500;">Mi Horario</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2" style="color: #0a5c0a; font-weight: 500;">Reportes</a></li>
+          <li class="nav-item"><a href="perfil.html" class="nav-link px-2" style="color: #0a5c0a; font-weight: 500;">Perfil</a></li>
         </ul>
         <p class="text-center border-top pt-3" style="color: #0a5c0a; opacity: 0.7;">
           &copy; 2026 SportClub, Inc. Todos los derechos reservados.
@@ -222,7 +208,24 @@
           nav.classList.remove("bg-scrolled");
         }
       };
+
+      // Cerrar sesión correctamente
+      document.getElementById("btnCerrarSesion").addEventListener("click", function(e) {
+        e.preventDefault();
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        window.location.href = "index.html";
+      });
     </script>
     <script src="dashboard.js"></script>
+
+    <script>
+      // Mostramos el nombre del coach
+      const loggedUser = JSON.parse(localStorage.getItem("user"));
+      if (loggedUser) {
+        const coachNameEl = document.getElementById("coachName");
+        if (coachNameEl) coachNameEl.textContent = loggedUser.full_name || loggedUser.user || "Coach";
+      }
+    </script>
   </body>
 </html>

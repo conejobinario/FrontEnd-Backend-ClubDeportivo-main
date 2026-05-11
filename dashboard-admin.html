@@ -12,228 +12,281 @@
         background: linear-gradient(90deg, #8b0008 0%, #cc000c 100%) !important;
         border-bottom: 2px solid #F2B705;
       }
-      
       #mainNav .nav-link { color: white !important; font-weight: 500; }
-      
       #mainNav .btn-outline-light {
         color: white !important;
         border-color: rgba(255, 204, 204, 0.95) !important;
       }
-
       .bg-scrolled {
         background: rgba(255, 245, 245, 0.95) !important;
         backdrop-filter: blur(10px);
         border-bottom: 1px solid #dc3545 !important;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       }
-
       .bg-scrolled .nav-link, .bg-scrolled .btn-outline-light { 
         color: #8b0008 !important; 
         border-color: #8b0008 !important;
       }
-
       .bg-dashboard { 
         background-color: #ebedef !important; 
         min-height: 100vh; 
       }
-
       .card {
         border: none !important;
         border-radius: 15px !important;
         box-shadow: 0 8px 30px rgba(0,0,0,0.05) !important;
         transition: transform 0.3s ease;
       }
-      .card:hover { transform: translateY(-5px); }
-
       .card-title {
         border-left: 5px solid #F2B705;
         padding-left: 12px;
         text-transform: uppercase;
         font-size: 0.9rem;
       }
-
-      .avatar-mini {
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        overflow: hidden;
-        border: 1px solid #dee2e6;
-      }
-      .avatar-mini img { width: 100%; height: 100%; object-fit: cover; }
-
-      .table > :not(caption) > * > * {
-        background-color: #fff !important;
-        padding: 12px 8px !important;
-      }
+      /* Errores en formulario */
+      .input-error { border-color: #dc3545 !important; }
+      .error-msg { color: #dc3545; font-size: 0.8rem; margin-top: 3px; }
     </style>
   </head>
   <body class="bg-dashboard"> 
     
-    <header>
-      <nav id="mainNav" class="navbar navbar-expand-sm sticky-top">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">
-            <img src="Imagenes/logo_empresa_letra_v1.png" alt="SportClub" height="45">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Usuarios</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Estadísticas</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Configuración</a></li>
-            </ul>
-            <div class="d-flex gap-2">
-              <button class="btn btn-outline-light btn-sm px-3">Editar Perfil</button>
-              <a href="index.html" class="btn btn-light btn-sm text-danger fw-bold px-3">Cerrar Sesión</a>
-            </div>
+    <!-- NAVBAR -->
+    <nav id="mainNav" class="navbar navbar-expand-sm sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <img src="Imagenes/logo_empresa_letra_v1.png" alt="SportClub" height="45">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link fw-bold text-warning" href="#">Usuarios</a></li>
+            <li class="nav-item"><a class="nav-link" href="perfil.html">Perfil</a></li>
+          </ul>
+          <div class="d-flex gap-2">
+            <a href="perfil.html" class="btn btn-outline-light btn-sm px-3">Editar Perfil</a>
+            <a href="index.html" id="btnCerrarSesion" class="btn btn-light btn-sm text-danger fw-bold px-3">Cerrar Sesión</a>
           </div>
         </div>
-      </nav> 
-
-      <div class="container py-4">
-        <h1 class="h3 fw-bold text-dark mb-1">Panel de Administración</h1>
-        <p class="text-muted">Control total del sistema SportClub</p>
       </div>
-    </header>
+    </nav> 
 
+    <!-- ENCABEZADO -->
+    <div class="container py-4">
+      <h1 class="h3 fw-bold text-dark mb-1">&#128101; Gestión de Usuarios</h1>
+      <p class="text-muted">Administra los usuarios del sistema SportClub</p>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="container pb-5">
-      <div class="row g-4"> 
-        
-        <section class="col-lg-3">
-          <article class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h2 class="card-title text-danger fw-bold mb-4 h5">Búsqueda de clases</h2>
-              
-              <form class="d-flex mb-4">
-                <select class="form-select form-select-sm me-2" aria-label="Seleccionar clase">
-                  <option selected disabled>Elige una clase...</option>
-                  <option value="1">Spinning</option>
-                  <option value="2">CrossFit</option>
-                  <option value="3">Yoga</option>
-                  <option value="4">Boxeo</option>
-                  <option value="5">HIIT</option>
-                  <option value="6">Zumba</option>
-                </select>
-                <button class="btn btn-sm btn-outline-danger" type="button">Buscar</button>
-              </form>
-              <div class="list-group list-group-flush small">
-                <div class="list-group-item d-flex justify-content-between align-items-center px-0 bg-transparent border-bottom">
-                  <span>Maki Zenin</span>
-                  <button class="btn btn-sm btn-outline-danger py-0 px-2">Editar</button>
-                </div>
-                <div class="list-group-item d-flex justify-content-between align-items-center px-0 bg-transparent border-bottom">
-                  <span>Toji Fushigiro</span>
-                  <button class="btn btn-sm btn-outline-danger py-0 px-2">Editar</button>
-                </div>
-                <div class="list-group-item d-flex justify-content-between align-items-center px-0 bg-transparent">
-                  <span>Satoru Gojo</span>
-                  <button class="btn btn-sm btn-outline-danger py-0 px-2">Editar</button>
-                </div>
-              </div>
-            </div>
-          </article>
-        </section>
+      
+      <!-- MENSAJE DE ALERTA (éxito o error) -->
+      <div id="alertaGlobal" class="alert d-none mb-3" role="alert"></div>
 
-        <section class="col-lg-6">
-          <article class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h2 class="card-title text-danger fw-bold mb-4 h5">Gestión de Usuarios</h2>
-              <div class="table-responsive">
-                <table class="table align-middle small text-center mb-0">
-                  <thead class="table-light text-secondary text-uppercase" style="font-size: 0.75rem;">
-                    <tr>
-                      <th scope="col" class="border-0">Nombre</th>
-                      <th scope="col" class="border-0">Email</th>
-                      <th scope="col" class="border-0">Rol</th>
-                      <th scope="col" class="border-0">Acción</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr class="border-bottom">
-                      <td class="text-start ps-3">
-                        <div class="avatar-mini d-inline-block me-2 align-middle">
-                          <img src="Imagenes/usuario1.jpg" alt="Usuario">
-                        </div> 
-                        <span class="fw-bold">Yuji Itadori</span>
-                      </td>
-                      <td class="text-muted">yujidesu@gmail.com</td>
-                      <td><span class="badge rounded-pill bg-primary px-3">Usuario</span></td>
-                      <td><button class="btn btn-outline-danger btn-sm rounded-pill px-3">Editar</button></td>
-                    </tr>
-                    <tr class="border-bottom">
-                      <td class="text-start ps-3">
-                        <div class="avatar-mini d-inline-block me-2 align-middle">
-                          <img src="Imagenes/usuario2.jpg" alt="Usuario">
-                        </div> 
-                        <span class="fw-bold">Nobara Kugisaki</span>
-                      </td>
-                      <td class="text-muted">nobaralinda@gmail.com</td>
-                      <td><span class="badge rounded-pill bg-primary px-3">Usuario</span></td>
-                      <td><button class="btn btn-outline-danger btn-sm rounded-pill px-3">Editar</button></td>
-                    </tr>
-                    <tr>
-                      <td class="text-start ps-3">
-                        <div class="avatar-mini d-inline-block me-2 align-middle">
-                          <img src="Imagenes/coach1.jpg" alt="Coach">
-                        </div> 
-                        <span class="fw-bold">Satoru Gojo</span>
-                      </td>
-                      <td class="text-muted">gojo.sensei@sportclub.com</td>
-                      <td><span class="badge rounded-pill bg-success px-3">Coach</span></td>
-                      <td>
-                        <a href="dashboard-coach.html" class="btn btn-outline-danger btn-sm rounded-pill px-3">Editar</a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </article>
-        </section>
+      <div class="card shadow-sm">
+        <div class="card-body">
+          
+          <!-- TÍTULO Y BOTÓN NUEVO USUARIO -->
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="card-title text-danger fw-bold h5 mb-0">Lista de Usuarios</h2>
+            <button class="btn btn-success btn-sm px-3 fw-bold" onclick="abrirModalCrear()">
+              &#43; Nuevo Usuario
+            </button>
+          </div>
 
-        <section class="col-lg-3">
-          <article class="card shadow-sm mb-4 border-0">
-            <div class="card-body">
-              <h2 class="card-title text-danger fw-bold mb-4 h5">Reportes Generales de Ventas</h2>
-              <div class="d-grid gap-2">
-                <button class="btn btn-outline-dark btn-sm d-flex justify-content-between align-items-center">
-                  <span>Informe Mensual</span> <span class="badge bg-dark">Descargar</span>
-                </button>
-                <button class="btn btn-outline-dark btn-sm d-flex justify-content-between align-items-center">
-                  <span>Abril: 2026</span> <span class="badge bg-dark">Descargar</span>
-                </button>
-              </div>
-            </div>
-          </article>
-          <article class="card shadow-sm border-0">
-            <div class="card-body">
-              <button class="btn btn-danger w-100 py-3 fw-bold rounded-3">
-                CONFIGURAR SISTEMA
-              </button>
-            </div>
-          </article>
-        </section>
+          <!-- TABLA DE USUARIOS -->
+          <div class="table-responsive">
+            <table class="table align-middle text-center small mb-0">
+              <thead class="table-light text-secondary text-uppercase" style="font-size: 0.75rem;">
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre Completo</th>
+                  <th>Email</th>
+                  <th>Rol</th>
+                  <th>Fecha Registro</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <!-- Aquí se inyectan los usuarios con JS -->
+              <tbody id="tablaUsuarios">
+                <tr>
+                  <td colspan="6" class="text-muted py-4">Cargando usuarios...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-      </div> 
+        </div>
+      </div>
     </main>
 
-    <footer class="py-5 border-top" style="background-color: #ebedef;">
+    <!-- ===================== MODAL: CREAR USUARIO ===================== -->
+    <div class="modal fade" id="modalCrear" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-success text-white">
+            <h5 class="modal-title">&#43; Nuevo Usuario</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+
+            <!-- Nombre -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Nombre Completo</label>
+              <input type="text" id="crear_nombre" class="form-control" placeholder="Ej: Juan Pérez">
+              <div class="error-msg" id="err_crear_nombre"></div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Email</label>
+              <input type="email" id="crear_email" class="form-control" placeholder="Ej: juan@demo.cl">
+              <div class="error-msg" id="err_crear_email"></div>
+            </div>
+
+            <!-- Rol -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Rol</label>
+              <select id="crear_rol" class="form-select">
+                <option value="user">user</option>
+                <option value="coach">coach</option>
+                <option value="admin">admin</option>
+              </select>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Contraseña</label>
+              <input type="password" id="crear_password" class="form-control" placeholder="Mínimo 8 caracteres">
+              <div class="error-msg" id="err_crear_password"></div>
+            </div>
+
+            <!-- Confirmar Contraseña -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Confirmar Contraseña</label>
+              <input type="password" id="crear_confirmar" class="form-control" placeholder="Repite tu contraseña">
+              <div class="error-msg" id="err_crear_confirmar"></div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button class="btn btn-success fw-bold" onclick="crearUsuario()">&#128190; Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== MODAL: EDITAR USUARIO ===================== -->
+    <div class="modal fade" id="modalEditar" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-warning">
+            <h5 class="modal-title">&#9998; Editar Usuario</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+
+            <!-- ID oculto para saber qué usuario editar -->
+            <input type="hidden" id="editar_id">
+
+            <!-- Nombre -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Nombre Completo</label>
+              <input type="text" id="editar_nombre" class="form-control">
+              <div class="error-msg" id="err_editar_nombre"></div>
+            </div>
+
+            <!-- Email (NO editable según el PDF) -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Email <span class="text-muted small">(no editable)</span></label>
+              <input type="email" id="editar_email" class="form-control bg-light" disabled>
+            </div>
+
+            <!-- Rol -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Rol</label>
+              <select id="editar_rol" class="form-select">
+                <option value="user">user</option>
+                <option value="coach">coach</option>
+                <option value="admin">admin</option>
+              </select>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button class="btn btn-warning fw-bold" onclick="guardarEdicion()">&#128190; Guardar Cambios</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== MODAL: CONFIRMAR ELIMINAR ===================== -->
+    <div class="modal fade" id="modalEliminar" tabindex="-1">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title">&#128465; Eliminar Usuario</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body text-center">
+            <p>¿Estás segura de que quieres eliminar a <strong id="nombreAEliminar"></strong>?</p>
+            <p class="text-danger small">Esta acción no se puede deshacer.</p>
+            <input type="hidden" id="idAEliminar">
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+            <button class="btn btn-danger btn-sm fw-bold" onclick="confirmarEliminar()">Sí, eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="py-4 border-top" style="background-color: #ebedef;">
       <div class="container text-center">
-        <ul class="nav justify-content-center pb-3 mb-3">
-          <li class="nav-item"><a href="index.html" class="nav-link px-2 text-danger fw-bold">Inicio</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-danger fw-bold">Usuarios</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-danger fw-bold">Estadísticas</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-danger fw-bold">Configuración</a></li>
-        </ul>
-        <p class="text-muted small">&copy; 2026 SportClub Admin. Todos los derechos reservados.</p>
+        <p class="text-muted small mb-0">&copy; 2026 SportClub Admin. Todos los derechos reservados.</p>
       </div>
     </footer> 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
+      // ==========================================
+      // VARIABLES GLOBALES
+      // ==========================================
+      const API = "http://localhost:3000";
+
+      // Obtenemos token y usuario del localStorage
+      const token = localStorage.getItem("token");
+      const loggedUser = JSON.parse(localStorage.getItem("user"));
+
+      // Si no hay sesión, mandamos al login
+      if (!token || !loggedUser) {
+        window.location.href = "index.html";
+      }
+
+      // Si el que entró no es admin, lo mandamos a su dashboard
+      if (loggedUser && loggedUser.role !== "admin") {
+        window.location.href = "dashboard-usuario.html";
+      }
+
+      // ==========================================
+      // CERRAR SESIÓN
+      // ==========================================
+      document.getElementById("btnCerrarSesion").addEventListener("click", function(e) {
+        e.preventDefault();
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        window.location.href = "index.html";
+      });
+
+      // ==========================================
+      // NAVBAR SCROLL
+      // ==========================================
       window.onscroll = function() {
         var nav = document.getElementById('mainNav');
         if (window.pageYOffset > 50) {
@@ -242,7 +295,295 @@
           nav.classList.remove("bg-scrolled");
         }
       };
-    </script> 
-    <script src="dashboard.js"></script>
+
+      // ==========================================
+      // FUNCIÓN: Mostrar alerta global
+      // ==========================================
+      function mostrarAlerta(mensaje, tipo) {
+        // tipo puede ser "success" o "danger"
+        const alerta = document.getElementById("alertaGlobal");
+        alerta.textContent = mensaje;
+        alerta.className = "alert alert-" + tipo;
+        // Se oculta sola después de 3 segundos
+        setTimeout(() => {
+          alerta.className = "alert d-none";
+        }, 3000);
+      }
+
+      // ==========================================
+      // FUNCIÓN: Dar color al badge según el rol
+      // ==========================================
+      function badgeRol(rol) {
+        if (rol === "admin") return '<span class="badge bg-danger px-3">' + rol + '</span>';
+        if (rol === "coach") return '<span class="badge bg-primary px-3">' + rol + '</span>';
+        return '<span class="badge bg-success px-3">' + rol + '</span>';
+      }
+
+      // ==========================================
+      // FUNCIÓN: Formatear fecha dd/mm/yyyy
+      // ==========================================
+      function formatearFecha(fechaISO) {
+        if (!fechaISO) return "Sin fecha";
+        const fecha = new Date(fechaISO);
+        const dia = String(fecha.getDate()).padStart(2, "0");
+        const mes = String(fecha.getMonth() + 1).padStart(2, "0");
+        const anio = fecha.getFullYear();
+        return dia + "/" + mes + "/" + anio;
+      }
+
+      // ==========================================
+      // FUNCIÓN: Pintar usuarios en la tabla
+      // ==========================================
+      function renderizarUsuarios(usuarios) {
+        const tbody = document.getElementById("tablaUsuarios");
+        tbody.innerHTML = ""; // Limpiamos la tabla
+
+        if (usuarios.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6" class="text-muted py-4">No hay usuarios registrados.</td></tr>';
+          return;
+        }
+
+        usuarios.forEach(function(usuario) {
+          tbody.innerHTML += `
+            <tr>
+              <td class="text-muted">${usuario.id}</td>
+              <td class="fw-bold text-start ps-3">${usuario.full_name}</td>
+              <td class="text-muted">${usuario.email}</td>
+              <td>${badgeRol(usuario.role)}</td>
+              <td>${formatearFecha(usuario.createdAt)}</td>
+              <td>
+                <button class="btn btn-warning btn-sm me-1" onclick="abrirModalEditar(${usuario.id}, '${usuario.full_name}', '${usuario.email}', '${usuario.role}')">
+                  &#9998; Editar
+                </button>
+                <button class="btn btn-danger btn-sm" onclick="abrirModalEliminar(${usuario.id}, '${usuario.full_name}')">
+                  &#128465; Eliminar
+                </button>
+              </td>
+            </tr>
+          `;
+        });
+      }
+
+      // ==========================================
+      // FUNCIÓN: Cargar todos los usuarios desde la API
+      // ==========================================
+      async function cargarUsuarios() {
+        try {
+          const respuesta = await fetch(API + "/api/users", {
+            headers: {
+              "Authorization": "Bearer " + token
+            }
+          });
+
+          const resultado = await respuesta.json();
+
+          if (resultado.ok) {
+            renderizarUsuarios(resultado.data);
+          } else {
+            document.getElementById("tablaUsuarios").innerHTML = 
+              '<tr><td colspan="6" class="text-danger py-4">Error al cargar usuarios.</td></tr>';
+          }
+
+        } catch (error) {
+          console.error("Error:", error);
+          document.getElementById("tablaUsuarios").innerHTML = 
+            '<tr><td colspan="6" class="text-danger py-4">No se pudo conectar con el servidor.</td></tr>';
+        }
+      }
+
+      // Cargamos usuarios al abrir la página
+      cargarUsuarios();
+
+      // ==========================================
+      // MODAL: CREAR USUARIO
+      // ==========================================
+      function abrirModalCrear() {
+        // Limpiamos el formulario
+        document.getElementById("crear_nombre").value = "";
+        document.getElementById("crear_email").value = "";
+        document.getElementById("crear_rol").value = "user";
+        document.getElementById("crear_password").value = "";
+        document.getElementById("crear_confirmar").value = "";
+        // Limpiamos errores
+        limpiarErrores(["crear_nombre", "crear_email", "crear_password", "crear_confirmar"]);
+        // Abrimos el modal
+        new bootstrap.Modal(document.getElementById("modalCrear")).show();
+      }
+
+      async function crearUsuario() {
+        // Capturamos los valores
+        const nombre = document.getElementById("crear_nombre").value.trim();
+        const email = document.getElementById("crear_email").value.trim();
+        const rol = document.getElementById("crear_rol").value;
+        const password = document.getElementById("crear_password").value;
+        const confirmar = document.getElementById("crear_confirmar").value;
+
+        // Limpiamos errores previos
+        limpiarErrores(["crear_nombre", "crear_email", "crear_password", "crear_confirmar"]);
+
+        // Validaciones
+        let hayError = false;
+
+        if (!nombre) {
+          mostrarError("crear_nombre", "El nombre es obligatorio.");
+          hayError = true;
+        }
+        if (!email) {
+          mostrarError("crear_email", "El email es obligatorio.");
+          hayError = true;
+        }
+        if (password.length < 8) {
+          mostrarError("crear_password", "La contraseña debe tener mínimo 8 caracteres.");
+          hayError = true;
+        }
+        if (password !== confirmar) {
+          mostrarError("crear_confirmar", "Las contraseñas no coinciden.");
+          hayError = true;
+        }
+
+        if (hayError) return; // Paramos si hay errores
+
+        try {
+          const respuesta = await fetch(API + "/api/users", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer " + token
+            },
+            body: JSON.stringify({
+              full_name: nombre,
+              email: email,
+              password: password,
+              role: rol,
+              must_change_password: false,
+              birth_date: "2000-01-01",
+              metadata: { sports: [{ name: "ninguno", frequency_per_week: 0 }] }
+            })
+          });
+
+          const resultado = await respuesta.json();
+
+          if (resultado.ok) {
+            // Cerramos modal
+            bootstrap.Modal.getInstance(document.getElementById("modalCrear")).hide();
+            mostrarAlerta("✅ Usuario creado correctamente.", "success");
+            cargarUsuarios(); // Recargamos la tabla
+          } else {
+            mostrarAlerta("❌ Error: " + (resultado.message || "No se pudo crear el usuario."), "danger");
+          }
+
+        } catch (error) {
+          console.error("Error:", error);
+          mostrarAlerta("❌ No se pudo conectar con el servidor.", "danger");
+        }
+      }
+
+      // ==========================================
+      // MODAL: EDITAR USUARIO
+      // ==========================================
+      function abrirModalEditar(id, nombre, email, rol) {
+        document.getElementById("editar_id").value = id;
+        document.getElementById("editar_nombre").value = nombre;
+        document.getElementById("editar_email").value = email;
+        document.getElementById("editar_rol").value = rol;
+        limpiarErrores(["editar_nombre"]);
+        new bootstrap.Modal(document.getElementById("modalEditar")).show();
+      }
+
+      async function guardarEdicion() {
+        const id = document.getElementById("editar_id").value;
+        const nombre = document.getElementById("editar_nombre").value.trim();
+        const rol = document.getElementById("editar_rol").value;
+
+        limpiarErrores(["editar_nombre"]);
+
+        if (!nombre) {
+          mostrarError("editar_nombre", "El nombre es obligatorio.");
+          return;
+        }
+
+        try {
+          const respuesta = await fetch(API + "/api/users/" + id, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer " + token
+            },
+            body: JSON.stringify({
+              full_name: nombre,
+              role: rol
+            })
+          });
+
+          const resultado = await respuesta.json();
+
+          if (resultado.ok) {
+            bootstrap.Modal.getInstance(document.getElementById("modalEditar")).hide();
+            mostrarAlerta("✅ Usuario actualizado correctamente.", "success");
+            cargarUsuarios();
+          } else {
+            mostrarAlerta("❌ Error: " + (resultado.message || "No se pudo actualizar."), "danger");
+          }
+
+        } catch (error) {
+          console.error("Error:", error);
+          mostrarAlerta("❌ No se pudo conectar con el servidor.", "danger");
+        }
+      }
+
+      // ==========================================
+      // MODAL: ELIMINAR USUARIO
+      // ==========================================
+      function abrirModalEliminar(id, nombre) {
+        document.getElementById("idAEliminar").value = id;
+        document.getElementById("nombreAEliminar").textContent = nombre;
+        new bootstrap.Modal(document.getElementById("modalEliminar")).show();
+      }
+
+      async function confirmarEliminar() {
+        const id = document.getElementById("idAEliminar").value;
+
+        try {
+          const respuesta = await fetch(API + "/api/users/" + id, {
+            method: "DELETE",
+            headers: {
+              "Authorization": "Bearer " + token
+            }
+          });
+
+          const resultado = await respuesta.json();
+
+          if (resultado.ok) {
+            bootstrap.Modal.getInstance(document.getElementById("modalEliminar")).hide();
+            mostrarAlerta("✅ Usuario eliminado correctamente.", "success");
+            cargarUsuarios();
+          } else {
+            mostrarAlerta("❌ Error: " + (resultado.message || "No se pudo eliminar."), "danger");
+          }
+
+        } catch (error) {
+          console.error("Error:", error);
+          mostrarAlerta("❌ No se pudo conectar con el servidor.", "danger");
+        }
+      }
+
+      // ==========================================
+      // HELPERS: Mostrar y limpiar errores de formulario
+      // ==========================================
+      function mostrarError(campoId, mensaje) {
+        document.getElementById(campoId).classList.add("input-error");
+        document.getElementById("err_" + campoId).textContent = mensaje;
+      }
+
+      function limpiarErrores(campos) {
+        campos.forEach(function(id) {
+          const input = document.getElementById(id);
+          if (input) input.classList.remove("input-error");
+          const err = document.getElementById("err_" + id);
+          if (err) err.textContent = "";
+        });
+      }
+
+    </script>
   </body>
 </html>
