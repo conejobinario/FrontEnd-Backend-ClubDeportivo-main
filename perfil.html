@@ -447,9 +447,36 @@
       // FUNCIÓN: Cambiar contraseña
       // ==========================================
       async function cambiarPassword() {
-        const actual = document.getElementById("pass_actual").value;
-        const nueva = document.getElementById("pass_nueva").value;
-        const confirmar = document.getElementById("pass_confirmar").value;
+    const actual = document.getElementById("pass_actual").value;
+    const nueva = document.getElementById("pass_nueva").value;
+    const confirmar = document.getElementById("pass_confirmar").value;
+    const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+    if (!passRegex.test(nueva)) {
+        mostrarAlerta("La nueva contraseña debe tener al menos 8 caracteres, letras y números.", "danger");
+        return;
+    }
+    if (nueva !== confirmar) {
+        mostrarAlerta("Las contraseñas no coinciden.", "danger");
+        return;
+    }
+
+    try {
+        const respuesta = await fetch(API + "/api/auth/me/password", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
+            body: JSON.stringify({ current_password: actual, new_password: nueva, confirm_password: confirmar })
+        });
+        const resultado = await respuesta.json();
+        if (resultado.ok) {
+            mostrarAlerta("✅ Contraseña actualizada.", "success");
+        } else {
+            mostrarAlerta("❌ Error: " + resultado.message, "danger");
+        }
+    } catch (error) {
+        mostrarAlerta("❌ Error de servidor.", "danger");
+    }
+}
 
         limpiarErrores(["pass_actual", "pass_nueva", "pass_confirmar"]);
 

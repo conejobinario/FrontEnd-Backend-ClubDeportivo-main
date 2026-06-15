@@ -510,13 +510,33 @@
     // FUNCIÓN: Pintar usuarios en la tabla
     // ==========================================
     function renderizarUsuarios(usuarios) {
-      const tbody = document.getElementById("tablaUsuarios");
-      tbody.innerHTML = "";
+    const tbody = document.getElementById("tablaUsuarios");
+    tbody.innerHTML = "";
 
-      if (usuarios.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" class="text-muted py-4">No hay usuarios registrados.</td></tr>';
+    if (usuarios.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="text-muted py-4">No hay usuarios.</td></tr>';
         return;
-      }
+    }
+
+    usuarios.forEach(function(usuario) {
+        // Corrección: se usa formatearFecha para mostrar la fecha de registro solicitada
+        const fecha = usuario.createdAt ? formatearFecha(usuario.createdAt) : "Sin fecha";
+        
+        tbody.innerHTML += `
+          <tr>
+            <td class="text-muted">${usuario.id}</td>
+            <td class="fw-bold text-start ps-3">${usuario.full_name}</td>
+            <td class="text-muted">${usuario.email}</td>
+            <td>${badgeRol(usuario.role)}</td>
+            <td>${fecha}</td>
+            <td>
+              <button class="btn btn-warning btn-sm" onclick="abrirModalEditar(${usuario.id}, '${usuario.full_name}', '${usuario.email}', '${usuario.role}')">Editar</button>
+              <button class="btn btn-danger btn-sm" onclick="abrirModalEliminar(${usuario.id}, '${usuario.full_name}')">Eliminar</button>
+            </td>
+          </tr>
+        `;
+    });
+}
 
       usuarios.forEach(function(usuario) {
         tbody.innerHTML += `
