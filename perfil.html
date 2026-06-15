@@ -444,58 +444,28 @@
       }
 
       // ==========================================
-      // FUNCIÓN: Cambiar contraseña
+      // FUNCIÓN: Cambiar contraseña (CORREGIDA)
       // ==========================================
       async function cambiarPassword() {
-    const actual = document.getElementById("pass_actual").value;
-    const nueva = document.getElementById("pass_nueva").value;
-    const confirmar = document.getElementById("pass_confirmar").value;
-    const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-
-    if (!passRegex.test(nueva)) {
-        mostrarAlerta("La nueva contraseña debe tener al menos 8 caracteres, letras y números.", "danger");
-        return;
-    }
-    if (nueva !== confirmar) {
-        mostrarAlerta("Las contraseñas no coinciden.", "danger");
-        return;
-    }
-
-    try {
-        const respuesta = await fetch(API + "/api/auth/me/password", {
-            method: "PUT",
-            headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
-            body: JSON.stringify({ current_password: actual, new_password: nueva, confirm_password: confirmar })
-        });
-        const resultado = await respuesta.json();
-        if (resultado.ok) {
-            mostrarAlerta("✅ Contraseña actualizada.", "success");
-        } else {
-            mostrarAlerta("❌ Error: " + resultado.message, "danger");
-        }
-    } catch (error) {
-        mostrarAlerta("❌ Error de servidor.", "danger");
-    }
-}
+        const actual = document.getElementById("pass_actual").value;
+        const nueva = document.getElementById("pass_nueva").value;
+        const confirmar = document.getElementById("pass_confirmar").value;
+        const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
         limpiarErrores(["pass_actual", "pass_nueva", "pass_confirmar"]);
 
-        let hayError = false;
-
         if (!actual) {
           mostrarError("pass_actual", "Ingresa tu contraseña actual.");
-          hayError = true;
+          return;
         }
-        if (nueva.length < 8) {
-          mostrarError("pass_nueva", "La contraseña debe tener mínimo 8 caracteres.");
-          hayError = true;
+        if (!passRegex.test(nueva)) {
+          mostrarError("pass_nueva", "Debe tener min. 8 caracteres, letras y números.");
+          return;
         }
         if (nueva !== confirmar) {
           mostrarError("pass_confirmar", "Las contraseñas no coinciden.");
-          hayError = true;
+          return;
         }
-
-        if (hayError) return;
 
         try {
           const respuesta = await fetch(API + "/api/auth/me/password", {
@@ -515,17 +485,14 @@
 
           if (resultado.ok) {
             mostrarAlerta("✅ Contraseña actualizada correctamente.", "success");
-            // Limpiamos los campos
             document.getElementById("pass_actual").value = "";
             document.getElementById("pass_nueva").value = "";
             document.getElementById("pass_confirmar").value = "";
           } else {
-            mostrarAlerta("❌ Error: " + (resultado.message || "No se pudo cambiar la contraseña."), "danger");
+            mostrarAlerta("❌ Error: " + (resultado.message || "No se pudo cambiar."), "danger");
           }
-
         } catch (error) {
-          console.error("Error:", error);
-          mostrarAlerta("❌ No se pudo conectar con el servidor.", "danger");
+          mostrarAlerta("❌ Error de servidor.", "danger");
         }
       }
 
@@ -547,7 +514,6 @@
           if (err) err.textContent = "";
         });
       }
-
     </script>
   </body>
 </html>
