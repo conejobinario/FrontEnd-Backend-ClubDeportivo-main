@@ -36,11 +36,11 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             const rol = resultado.data.user.role;
 
             if (rol === "admin") {
-                window.location.href = "dashboard-admin.html";
+                window.location.href = "/html/dashboard-admin.html";
             } else if (rol === "coach") {
-                window.location.href = "dashboard-coach.html";
+                window.location.href = "/html/dashboard-coach.html";
             } else {
-                window.location.href = "dashboard-usuario.html";
+                window.location.href = "/html/dashboard-usuario.html";
             }
 
         } else {
